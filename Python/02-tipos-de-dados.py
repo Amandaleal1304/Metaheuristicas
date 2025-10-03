@@ -7,6 +7,7 @@ numero = (1, 2, 3) #tupla
 pessoa = {"nome": "Fernando", "disciplina": "Metaeuristicas"} #dicionario  que parece com struct
 conjunto = {"vermelho", "azul", "verde"} #conjunto
 
+#converte para string antes de mostrar dados de outros tipos
 print("Nome: "+nome+" sala: "+str(sala)+" altura: "+ str(altura)+ " estudante: "+ str(is_student))
 
 print(f"notas: {notas}")
@@ -14,4 +15,6 @@ print(f"notas: {notas}")
 print(f"Numeros: {numero}")
 print(f"Pessoa: {pessoa}")
 print(f"Cores: {conjunto}")
+
+
 
