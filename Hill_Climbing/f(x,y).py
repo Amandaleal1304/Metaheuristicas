@@ -1,7 +1,6 @@
 import math
 import random
 def bin2float (bits, a, b):
-    # calulando o valor inteiro 
     g = 0
     n = len(bits)#tamanho do vetor ou seja quantidade de bits [0, 1, 0, 1]
     for i in range (n):
@@ -35,5 +34,22 @@ def avalia_solucao(sol): # avalia a qualidade da solução
     y = bin2float(sol_y, min_y, max_y)
     return f(x, y)
 
-s = gera_solucao(30)
-print(avalia_solucao(s))
+def hill_climbing(bits, max_it):#bits = tamanho do array, max_it = numero de iteracoes
+    sol_atual = gera_solucao(bits) #gera uma solucao aleatoria
+    fitness_atual = avalia_solucao(sol_atual)#avalia a solucao
+    for _ in range(max_it):
+        sol_vizinha = sol_atual.copy()#cria uma copia da solucao atual
+        r = random.randint(0, bits - 1) #gera um numero aleatorio entre 0 e o tamanho do array
+        sol_vizinha[r] = 1 - sol_vizinha[r] #acha uma posicao e inverte o bit [0 -1 = 1 e 1 - 1 = 0]
+        fitness_vizinha = avalia_solucao(sol_vizinha) #avalia a solucao vizinha
+        if fitness_vizinha > fitness_atual: #se a solucao vizinha for melhor que a atual
+            sol_atual = sol_vizinha #atualiza a solucao atual
+            fitness_atual = fitness_vizinha #atualiza o fitness atual
+
+    return sol_atual, fitness_atual
+
+#   MAIN    
+sa, fa = hill_climbing(30, 1000)        
+print(sa)
+print(fa)
+        
